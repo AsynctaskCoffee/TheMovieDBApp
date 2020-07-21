@@ -83,10 +83,10 @@ android {
         }
 
         debug {
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
-            storeFile file('debug.keystore')
-            storePassword 'android'
+            keyAlias 'key0'
+            keyPassword 'asdqwe123'
+            storeFile file('movies_debug.jks')
+            storePassword 'asdqwe123'
         }
     }
 
