@@ -1,0 +1,171 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlinx-serialization'
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+
+    defaultConfig {
+        applicationId "com.asynctaskcoffee.moviestemplate"
+
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.incremental": "true"]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        disable 'ValidFragment'
+        abortOnError false
+    }
+
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.9.1"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.4'
+
+    testImplementation rootProject.ext.dependencies["junitTest"]
+    testImplementation rootProject.ext.dependencies["mockitoTestImplementation"]
+
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation rootProject.ext.dependencies["junitAndroidTestImplementation"]
+    androidTestImplementation rootProject.ext.dependencies["mockitoAndroidTestImplementation"]
+
+    kapt rootProject.ext.dependencies["glideAnnotationProcessor"]
+    kapt rootProject.ext.dependencies["daggerCompiler"]
+    kapt rootProject.ext.dependencies["daggerAndroidProcessor"]
+    kapt rootProject.ext.dependencies["butterKnifeannotationProcessor"]
+
+
+    annotationProcessor rootProject.ext.dependencies["glideAnnotationProcessor"]
+    annotationProcessor rootProject.ext.dependencies["dagger2"]
+
+    testAnnotationProcessor rootProject.ext.dependencies["dagger2"]
+
+    implementation rootProject.ext.dependencies["relativepopupwindow"]
+    implementation rootProject.ext.dependencies["leanback"]
+    implementation rootProject.ext.dependencies["appCompat"]
+    implementation rootProject.ext.dependencies["recyclerView"]
+    implementation rootProject.ext.dependencies["cardView"]
+    implementation rootProject.ext.dependencies["legacy"]
+    implementation rootProject.ext.dependencies["material"]
+    implementation rootProject.ext.dependencies["constaraintLayout"]
+    implementation rootProject.ext.dependencies["multidex"]
+    implementation rootProject.ext.dependencies["playBase"]
+    implementation rootProject.ext.dependencies["playAuth"]
+    implementation rootProject.ext.dependencies["playMaps"]
+    implementation rootProject.ext.dependencies["safetyNet"]
+    implementation rootProject.ext.dependencies["firebaseMessaging"]
+    implementation rootProject.ext.dependencies["firebaseAnalytics"]
+    implementation rootProject.ext.dependencies["firebaseAppIndexing"]
+    implementation rootProject.ext.dependencies["firebaseCrash"]
+    implementation rootProject.ext.dependencies["firebaseCore"]
+    implementation rootProject.ext.dependencies["firebasePerf"]
+    implementation rootProject.ext.dependencies["firebaseAuth"]
+    implementation rootProject.ext.dependencies["socketIo"]
+    implementation rootProject.ext.dependencies["butterKnife"]
+    implementation rootProject.ext.dependencies["googleGson"]
+    implementation rootProject.ext.dependencies["roomRuntime"]
+    implementation rootProject.ext.dependencies["rxKotlin"]
+    implementation rootProject.ext.dependencies["roomCompiler"]
+    implementation rootProject.ext.dependencies["roomRxJava2"]
+    implementation rootProject.ext.dependencies["lifeCycleRuntime"]
+    implementation rootProject.ext.dependencies["lifeCycleRuntimeExtensions"]
+    implementation rootProject.ext.dependencies["lifeCycleCompiler"]
+    implementation rootProject.ext.dependencies["preferences"]
+    implementation rootProject.ext.dependencies["spinkit"]
+    implementation rootProject.ext.dependencies["explayer"]
+    implementation rootProject.ext.dependencies["reyMaterial"]
+    implementation rootProject.ext.dependencies["swipy"]
+    implementation rootProject.ext.dependencies["expandableLayout"]
+    implementation rootProject.ext.dependencies["glide"]
+    implementation rootProject.ext.dependencies["okhttp3"]
+    implementation rootProject.ext.dependencies["circleImageView"]
+    implementation rootProject.ext.dependencies["facebookSDK"]
+    implementation rootProject.ext.dependencies["facebookAnnotation"]
+    implementation rootProject.ext.dependencies["zoomy"]
+    implementation rootProject.ext.dependencies["retrofit"]
+    implementation rootProject.ext.dependencies["retrofitGson"]
+    implementation rootProject.ext.dependencies["okhttp3SQ"]
+    implementation rootProject.ext.dependencies["okhttp3SQInterceptor"]
+    implementation rootProject.ext.dependencies["leakCanary"]
+    implementation rootProject.ext.dependencies["smimmerLayout"]
+    implementation rootProject.ext.dependencies["htmlTextView"]
+    implementation rootProject.ext.dependencies["universalImageView"]
+    implementation rootProject.ext.dependencies["gifDrawable"]
+    implementation rootProject.ext.dependencies["httpComponents"]
+    implementation rootProject.ext.dependencies["horizontalListView"]
+    implementation rootProject.ext.dependencies["segmented"]
+    implementation rootProject.ext.dependencies["roundedImageView"]
+    implementation rootProject.ext.dependencies["scrollable"]
+    implementation rootProject.ext.dependencies["imageChooser"]
+    implementation rootProject.ext.dependencies["webpDecoder"]
+    implementation rootProject.ext.dependencies["fragNav"]
+    implementation rootProject.ext.dependencies["floatYoutubePlayer"]
+    implementation rootProject.ext.dependencies["highlightJS"]
+    implementation rootProject.ext.dependencies["picasso"]
+    implementation rootProject.ext.dependencies["explayer"]
+    implementation rootProject.ext.dependencies["spinkitV2"]
+    implementation rootProject.ext.dependencies["kotlin"]
+    implementation rootProject.ext.dependencies["prDownloader"]
+    implementation rootProject.ext.dependencies["customAcitivtyOnCrash"]
+    implementation rootProject.ext.dependencies["rxandroid"]
+    implementation rootProject.ext.dependencies["rxjava2"]
+    implementation rootProject.ext.dependencies["placeholderview"]
+    implementation rootProject.ext.dependencies["retrofitRxJava2Adapter"]
+    implementation rootProject.ext.dependencies["timber"]
+    implementation rootProject.ext.dependencies["dagger2"]
+    implementation rootProject.ext.dependencies["chromeCustomTabs"]
+    implementation rootProject.ext.dependencies["dagger2"]
+    implementation rootProject.ext.dependencies["mediaRouter"]
+    implementation rootProject.ext.dependencies["castFramework"]
+    implementation rootProject.ext.dependencies["cast-google-exo"]
+
+}
