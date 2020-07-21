@@ -24,12 +24,30 @@ android {
                 arguments = ["room.incremental": "true"]
             }
         }
+
+        buildConfigField 'boolean', 'IS_DEVELOPMENT', 'true'
+        buildConfigField 'String', 'moviesServiceEndPointUrl', '"https://service-beta.donanimhaber.com/"'
     }
 
+
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        buildTypes {
+            debug {
+                debuggable true
+
+                //If there is debug endpoint
+
+                buildConfigField 'boolean', 'IS_DEVELOPMENT', 'true'
+                buildConfigField 'String', 'moviesServiceEndPointUrl', '"https://service-beta.donanimhaber.com/"'
+            }
+            release {
+                debuggable false
+
+                //If there is debug endpoint
+
+                buildConfigField 'boolean', 'IS_DEVELOPMENT', 'false'
+                buildConfigField 'String', 'moviesServiceEndPointUrl', '"https://service.donanimhaber.com/"'
+            }
         }
     }
 
@@ -56,6 +74,20 @@ android {
 
     testOptions {
         unitTests.includeAndroidResources = true
+    }
+
+    signingConfigs {
+
+        release {
+            readKeystorePropertiesAfterBuild()
+        }
+
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('debug.keystore')
+            storePassword 'android'
+        }
     }
 }
 
