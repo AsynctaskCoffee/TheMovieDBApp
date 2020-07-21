@@ -26,7 +26,7 @@ android {
         }
 
         buildConfigField 'boolean', 'IS_DEVELOPMENT', 'true'
-        buildConfigField 'String', 'moviesServiceEndPointUrl', '"https://service-beta.donanimhaber.com/"'
+        buildConfigField 'String', 'moviesServiceEndPointUrl', '"baseUrl"'
     }
 
 
@@ -38,7 +38,7 @@ android {
                 //If there is debug endpoint
 
                 buildConfigField 'boolean', 'IS_DEVELOPMENT', 'true'
-                buildConfigField 'String', 'moviesServiceEndPointUrl', '"https://service-beta.donanimhaber.com/"'
+                buildConfigField 'String', 'moviesServiceEndPointUrl', '"baseUrl"'
             }
             release {
                 debuggable false
@@ -46,7 +46,7 @@ android {
                 //If there is debug endpoint
 
                 buildConfigField 'boolean', 'IS_DEVELOPMENT', 'false'
-                buildConfigField 'String', 'moviesServiceEndPointUrl', '"https://service.donanimhaber.com/"'
+                buildConfigField 'String', 'moviesServiceEndPointUrl', '"baseUrl"'
             }
         }
     }
@@ -127,7 +127,6 @@ dependencies {
     testAnnotationProcessor rootProject.ext.dependencies["dagger2"]
 
     implementation rootProject.ext.dependencies["relativepopupwindow"]
-    implementation rootProject.ext.dependencies["leanback"]
     implementation rootProject.ext.dependencies["appCompat"]
     implementation rootProject.ext.dependencies["recyclerView"]
     implementation rootProject.ext.dependencies["cardView"]
