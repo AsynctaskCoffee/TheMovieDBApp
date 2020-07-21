@@ -177,7 +177,5 @@ ext {
             "preferences"                     : "androidx.preference:preference-ktx:1.1.0",
             "daggerCompiler"                  : "com.google.dagger:dagger-compiler:${version["daggerCompilerVersiyonu"]}",
             "daggerAndroidProcessor"          : "com.google.dagger:dagger-android-processor:${version["daggerAndroidProcessorVersiyonu"]}",
-
-
     ]
 }
