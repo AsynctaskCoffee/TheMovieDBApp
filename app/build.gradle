@@ -89,15 +89,21 @@ android {
             storePassword 'android'
         }
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def versionName = variant.versionName
+            def versionCode = variant.versionCode
+            def variantName = variant.name
+            outputFileName = variantName + '_' + versionName + '_' + versionCode + '.apk'
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.9.1"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.4'
@@ -105,7 +111,6 @@ dependencies {
     testImplementation rootProject.ext.dependencies["junitTest"]
     testImplementation rootProject.ext.dependencies["mockitoTestImplementation"]
 
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     androidTestImplementation rootProject.ext.dependencies["junitAndroidTestImplementation"]
     androidTestImplementation rootProject.ext.dependencies["mockitoAndroidTestImplementation"]
