@@ -26,7 +26,7 @@ android {
         }
 
         buildConfigField 'boolean', 'IS_DEVELOPMENT', 'true'
-        buildConfigField 'String', 'moviesServiceEndPointUrl', '"baseUrl"'
+        buildConfigField 'String', 'moviesServiceEndPointUrl', '"https://api.themoviedb.org/"'
     }
 
 
@@ -38,7 +38,7 @@ android {
                 //If there is debug endpoint
 
                 buildConfigField 'boolean', 'IS_DEVELOPMENT', 'true'
-                buildConfigField 'String', 'moviesServiceEndPointUrl', '"baseUrl"'
+                buildConfigField 'String', 'moviesServiceEndPointUrl', '"https://api.themoviedb.org/"'
             }
             release {
                 debuggable false
@@ -46,7 +46,7 @@ android {
                 //If there is debug endpoint
 
                 buildConfigField 'boolean', 'IS_DEVELOPMENT', 'false'
-                buildConfigField 'String', 'moviesServiceEndPointUrl', '"baseUrl"'
+                buildConfigField 'String', 'moviesServiceEndPointUrl', '"https://api.themoviedb.org/"'
             }
         }
     }

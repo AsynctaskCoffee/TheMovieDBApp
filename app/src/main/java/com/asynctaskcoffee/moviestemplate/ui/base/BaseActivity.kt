@@ -3,6 +3,7 @@ package com.asynctaskcoffee.moviestemplate.ui.base
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
+import butterknife.ButterKnife
 import com.asynctaskcoffee.moviestemplate.MoviesApp
 
 abstract class BaseActivity<V : BaseContract.View, P : BaseContract.Presenter<V>> :
@@ -13,9 +14,11 @@ abstract class BaseActivity<V : BaseContract.View, P : BaseContract.Presenter<V>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         hasSavedInstance = savedInstanceState != null
         setContentView(getLayoutResId())
 
+        ButterKnife.bind(this)
         injectDependencies()
 
         val viewModel: BaseViewModel<V, P> =

@@ -7,7 +7,16 @@ open class DataRepository @Inject constructor(
     private val remoteDataSources: RemoteDataSources,
     private val moviesPrefManager: MoviesPrefManager
 ) {
-    fun getLastTabIndex() = moviesPrefManager.getIntVal("", 0)
-    fun getLastTabPageIndex() = moviesPrefManager.getIntVal("", 0)
-    fun getItemsFromRemote() = remoteDataSources.getItems()
+    fun getLastTabIndex() = moviesPrefManager.getIntVal("lastTabIndex", 0)
+    fun getLastTabPageIndex() = moviesPrefManager.getIntVal("lastTabPageIndex", 0)
+
+    fun setLastTabIndex(lastTabIndex: Int) = moviesPrefManager.save("lastTabIndex", lastTabIndex)
+    fun setLastTabPageIndex(lastTabPageIndex: Int) =
+        moviesPrefManager.save("lastTabPageIndex", lastTabPageIndex)
+
+    fun getMoviesByPage(pageIndex: Int) = remoteDataSources.getMoviesByPage(pageIndex)
+    fun getSeriesByPage(pageIndex: Int) = remoteDataSources.getSeriesByPage(pageIndex)
+
+    fun getMoviesByPage(moviesId: String) = remoteDataSources.getMoviesByPage(moviesId)
+    fun getSeriesByPage(seriesId: String) = remoteDataSources.getSeriesByPage(seriesId)
 }

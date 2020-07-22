@@ -2,6 +2,7 @@ package com.asynctaskcoffee.moviestemplate.di.modules
 
 import android.app.Application
 import com.asynctaskcoffee.moviestemplate.BuildConfig
+import com.asynctaskcoffee.moviestemplate.data.BearerTokenInterceptor
 import com.asynctaskcoffee.moviestemplate.di.scope.ApplicationScope
 import com.asynctaskcoffee.moviestemplate.data.RemoteEndPoints
 import com.google.gson.Gson
@@ -32,10 +33,16 @@ class RemoteModule(private val application: Application) {
     @Provides
     fun provideOkHttpCache() = Cache(application.cacheDir, CACHE_SIZE)
 
+
+    @ApplicationScope
+    @Provides
+    fun provideBearerInterceptor() = BearerTokenInterceptor()
+
+
     @ApplicationScope
     @Provides
     @Named("CommonOkHttpClient")
-    fun provideOkHttpClient(cache: Cache) =
+    fun provideOkHttpClient(cache: Cache,bearerTokenInterceptor: BearerTokenInterceptor) =
         with(OkHttpClient.Builder()) {
             cache(cache)
             if (BuildConfig.IS_DEVELOPMENT) {
@@ -43,15 +50,17 @@ class RemoteModule(private val application: Application) {
                 logging.level = HttpLoggingInterceptor.Level.BASIC
                 addInterceptor(logging)
             }
+            addInterceptor(bearerTokenInterceptor)
             build()
         }
 
     @ApplicationScope
     @Provides
     @Named("RemoteOkHttpClient")
-    fun provideRemoteOkHttpClient(cache: Cache) =
+    fun provideRemoteOkHttpClient(cache: Cache,bearerTokenInterceptor: BearerTokenInterceptor) =
         with(OkHttpClient.Builder()) {
             cache(cache)
+            addInterceptor(bearerTokenInterceptor)
             build()
         }
 

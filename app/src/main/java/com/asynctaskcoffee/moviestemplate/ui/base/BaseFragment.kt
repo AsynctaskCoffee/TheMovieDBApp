@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import butterknife.ButterKnife
 import com.asynctaskcoffee.moviestemplate.MoviesApp
 
 abstract class BaseFragment<V : BaseContract.View, P : BaseContract.Presenter<V>> : Fragment(),
@@ -18,7 +19,8 @@ abstract class BaseFragment<V : BaseContract.View, P : BaseContract.Presenter<V>
         super.onViewCreated(view, savedInstanceState)
         hasSavedInstance = savedInstanceState != null
         injectDependencies()
-        val viewModel: BaseViewModel<V, P> = ViewModelProviders.of(this).get(BaseViewModel<V, P>()::class.java)
+        val viewModel: BaseViewModel<V, P> =
+            ViewModelProviders.of(this).get(BaseViewModel<V, P>()::class.java)
         val isCreated = viewModel.presenter == null
         viewModel.presenter = viewModel.presenter ?: initPresenter()
         presenter = viewModel.presenter
@@ -33,7 +35,9 @@ abstract class BaseFragment<V : BaseContract.View, P : BaseContract.Presenter<V>
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(getLayoutResId(), container, false)
+        val view: View = inflater.inflate(getLayoutResId(), container, false)
+        ButterKnife.bind(this, view)
+        return view
     }
 
     override fun onStart() {
