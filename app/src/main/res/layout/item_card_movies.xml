@@ -17,9 +17,9 @@
         app:cardElevation="4dp">
 
         <LinearLayout
-            android:background="?attr/selectableItemBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
             android:orientation="horizontal">
 
 
@@ -34,6 +34,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingStart="10dp"
                 android:orientation="vertical"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp">
@@ -43,7 +44,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:paddingStart="10dp"
                     android:singleLine="true"
                     android:textColor="@android:color/black"
                     android:textSize="25sp"
@@ -59,7 +59,6 @@
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:paddingStart="10dp"
                     android:singleLine="true"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="16sp"
@@ -97,11 +96,11 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cardStarHolder"
                         android:layout_width="80dp"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:layout_marginEnd="10dp"
                         android:transitionName="@string/transitionCard"
                         app:cardBackgroundColor="@color/colorPrimary"
-                        app:cardCornerRadius="12dp"
+                        app:cardCornerRadius="15dp"
                         app:cardElevation="0dp">
 
                         <LinearLayout
