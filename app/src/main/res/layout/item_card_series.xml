@@ -3,107 +3,87 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
-    android:layout_margin="5dp">
+    android:layout_height="wrap_content">
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/seriesCard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:visibility="visible"
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="10dp"
-        app:cardElevation="3dp">
+        app:cardElevation="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
 
-            <ImageView
-                android:id="@+id/seriesImage"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:background="#e0e0e0"
-                android:scaleType="centerCrop" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/seriesImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="300:450"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/seriesTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="23sp"
-                    android:textStyle="bold"
-                    tools:text="JOKER" />
-
-                <TextView
-                    android:id="@+id/seriesSubTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:ellipsize="end"
-                    android:gravity="center_vertical"
-                    android:maxLines="1"
-                    android:paddingStart="10dp"
-                    android:singleLine="true"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    tools:text="JOKER" />
+                android:orientation="horizontal">
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:orientation="horizontal">
-
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
 
                     <TextView
-                        android:id="@+id/seriesDate"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/seriesTitle"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@android:color/darker_gray"
-                        android:textSize="17sp"
+                        android:ellipsize="end"
+                        android:paddingStart="10dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp"
                         android:textStyle="bold"
                         tools:text="JOKER" />
-
-                    <TextView
-                        android:layout_width="2dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="7dp"
-                        android:background="@android:color/darker_gray" />
 
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
                         app:cardBackgroundColor="@color/colorPrimary"
-                        app:cardCornerRadius="20dp"
+                        app:cardCornerRadius="12dp"
                         app:cardElevation="0dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:gravity="center"
-                            android:orientation="horizontal"
-                            android:padding="2dp">
+                            android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="15dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="5dp"
+                                android:layout_height="13dp"
                                 android:layout_marginEnd="5dp"
                                 android:adjustViewBounds="true"
                                 android:src="@drawable/ic_star"
@@ -113,19 +93,17 @@
                                 android:id="@+id/seriesRating"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="5dp"
                                 android:textColor="@android:color/white"
-                                android:textSize="16sp"
+                                android:textSize="11sp"
                                 android:textStyle="bold"
                                 tools:text="5.5" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
+
                 </LinearLayout>
 
-
             </LinearLayout>
-
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

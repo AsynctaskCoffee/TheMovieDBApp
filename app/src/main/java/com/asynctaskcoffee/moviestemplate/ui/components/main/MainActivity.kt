@@ -1,19 +1,20 @@
 package com.asynctaskcoffee.moviestemplate.ui.components.main
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.asynctaskcoffee.moviestemplate.R
 import com.asynctaskcoffee.moviestemplate.ui.base.BaseActivity
+import com.asynctaskcoffee.moviestemplate.ui.components.movies.MoviesFragment
 import com.asynctaskcoffee.moviestemplate.ui.components.series.SeriesFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), MainContract.View {
+class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), MainContract.View,
+    BottomNavigationView.OnNavigationItemSelectedListener {
 
     @Inject
     lateinit var mainPresenter: MainPresenter
@@ -25,7 +26,7 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     override fun getLayoutResId() = R.layout.activity_main
 
     override fun initUI() {
-
+        getMainNavigationView().setOnNavigationItemSelectedListener(this)
     }
 
     override fun initLastIndexes(lastTabIndex: Int, lastTabPageIndex: Int) {
@@ -43,12 +44,14 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
 
     override fun pushMoviesFragment() {
         getMainFragmentManager().beginTransaction()
-            .replace(getMainFragmentHolder(), newFragmentInstance<SeriesFragment>()).commit()
+            .replace(getMainFragmentHolder(), newFragmentInstance<MoviesFragment>()).commit()
+        getMainToolbarTitleTextView().text = getString(R.string.title_movies)
     }
 
     override fun pushSeriesFragment() {
         getMainFragmentManager().beginTransaction()
             .replace(getMainFragmentHolder(), newFragmentInstance<SeriesFragment>()).commit()
+        getMainToolbarTitleTextView().text = getString(R.string.title_series)
     }
 
     override fun showToast(msg: String) {
@@ -56,4 +59,12 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     }
 
     private inline fun <reified T : Fragment> newFragmentInstance() = T::class.java.newInstance()
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.navigation_movies -> pushMoviesFragment()
+            R.id.navigation_series -> pushSeriesFragment()
+        }
+        return true
+    }
 }

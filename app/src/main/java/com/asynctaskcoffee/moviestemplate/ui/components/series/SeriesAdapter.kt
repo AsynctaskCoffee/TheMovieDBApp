@@ -19,8 +19,6 @@ class SeriesAdapter(private val seriesList: List<ResultsItemSeries?>?) :
                 .load("https://image.tmdb.org/t/p/w300" + item.posterPath)
                 .into(itemView.seriesImage)
             itemView.seriesTitle.text = item.originalName
-            itemView.seriesSubTitle.text = item.overview
-            itemView.seriesDate.text = item.firstAirDate
             itemView.seriesRating.text = item.voteAverage.toString()
         }
     }
