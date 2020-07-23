@@ -2,4 +2,10 @@
     <string name="app_name">Movies</string>
     <string name="title_series">Top Rated Series</string>
     <string name="title_movies">Top Rated Movies</string>
+
+    <string name="transitionImage">transImage</string>
+    <string name="transitionTitle">transTitle</string>
+    <string name="transitionCard">transCard</string>
+    <string name="transitionCardContainer">transCardContainer</string>
+    <string name="transitionImageLayout">transitionImageLayout</string>
 </resources>

@@ -16,10 +16,6 @@ interface MainContract {
 
         fun getMainToolbarTitleTextView(): TextView
 
-        fun getMainFragmentManager(): FragmentManager
-
-        fun getMainFragmentHolder(): Int
-
         fun getMainNavigationView(): BottomNavigationView
 
         fun pushMoviesFragment()

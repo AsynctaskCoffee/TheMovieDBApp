@@ -17,6 +17,6 @@ open class DataRepository @Inject constructor(
     fun getMoviesByPage(pageIndex: Int) = remoteDataSources.getMoviesByPage(pageIndex)
     fun getSeriesByPage(pageIndex: Int) = remoteDataSources.getSeriesByPage(pageIndex)
 
-    fun getMoviesByPage(moviesId: String) = remoteDataSources.getMoviesByPage(moviesId)
-    fun getSeriesByPage(seriesId: String) = remoteDataSources.getSeriesByPage(seriesId)
+    fun getMoviesDetailsById(moviesId: String) = remoteDataSources.getMoviesDetailsById(moviesId)
+    fun getSeriesDetailsById(seriesId: String) = remoteDataSources.getSeriesDetailsById(seriesId)
 }

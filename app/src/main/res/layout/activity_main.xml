@@ -8,8 +8,8 @@
     tools:context=".ui.components.main.MainActivity">
 
 
-    <FrameLayout
-        android:id="@+id/fragmentHolderView"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/fragmentViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottomNavigationView" />

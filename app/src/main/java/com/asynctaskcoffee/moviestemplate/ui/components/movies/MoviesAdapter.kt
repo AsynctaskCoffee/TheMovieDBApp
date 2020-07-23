@@ -1,18 +1,61 @@
 package com.asynctaskcoffee.moviestemplate.ui.components.movies
 
+import android.app.ActivityOptions
+import android.content.Intent
+import android.util.Pair
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.asynctaskcoffee.moviestemplate.R
 import com.asynctaskcoffee.moviestemplate.data.remotemodels.ResultsItemMovies
+import com.asynctaskcoffee.moviestemplate.ui.components.details.DetailsActivity
+import com.asynctaskcoffee.moviestemplate.utils.ConvertCommonResult
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_card_movies.view.*
 
-class MoviesAdapter(private val moviesList: List<ResultsItemMovies?>?) :
-    RecyclerView.Adapter<MoviesAdapter.SeriesViewHolder>() {
+class MoviesAdapter(
+    private val moviesList: List<ResultsItemMovies?>?, private val moviesFragment: MoviesFragment
+) : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
-    class SeriesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class MoviesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        fun bindTransitionIntent(moviesFragment: MoviesFragment, item: ResultsItemMovies) {
+            itemView.setOnClickListener {
+
+                val pairImage = Pair<View, String>(
+                    itemView.moviesImage,
+                    itemView.context.resources.getString(R.string.transitionImage)
+                )
+                val pairTitle = Pair<View, String>(
+                    itemView.moviesTitle,
+                    itemView.context.resources.getString(R.string.transitionTitle)
+                )
+                val pairStar = Pair<View, String>(
+                    itemView.cardStarHolder,
+                    itemView.context.resources.getString(R.string.transitionCard)
+                )
+                val pairHolder = Pair<View, String>(
+                    itemView.moviesCard,
+                    itemView.context.resources.getString(R.string.transitionCardContainer)
+                )
+
+                val activityOptions = ActivityOptions.makeSceneTransitionAnimation(
+                    moviesFragment.activity,
+                    pairImage,
+                    pairTitle,
+                    pairStar,
+                    pairHolder
+                )
+
+                DetailsActivity.startMe(
+                    moviesFragment.requireActivity(),
+                    activityOptions.toBundle(),
+                    ConvertCommonResult().convert(item)
+                )
+
+            }
+        }
+
         fun bindItems(item: ResultsItemMovies) {
             Glide.with(itemView.moviesImage.context)
                 .load("https://image.tmdb.org/t/p/w300" + item.posterPath)
@@ -24,17 +67,19 @@ class MoviesAdapter(private val moviesList: List<ResultsItemMovies?>?) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SeriesViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_card_movies, parent, false)
-        return SeriesViewHolder(view)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_card_movies, parent, false)
+        return MoviesViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return moviesList?.size ?: 0
     }
 
-    override fun onBindViewHolder(holder: SeriesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
+        holder.bindTransitionIntent(moviesFragment, moviesList?.get(position)!!)
         holder.bindItems(moviesList?.get(position)!!)
     }
 }

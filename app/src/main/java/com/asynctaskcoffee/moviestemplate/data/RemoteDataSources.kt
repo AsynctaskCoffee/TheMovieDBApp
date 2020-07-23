@@ -13,6 +13,6 @@ open class RemoteDataSources @Inject constructor(
     fun getMoviesByPage(pageIndex: Int) = remoteEndPoints.getMovies(pageIndex)
     fun getSeriesByPage(pageIndex: Int) = remoteEndPoints.getSeries(pageIndex)
 
-    fun getMoviesByPage(movieId: String) = remoteEndPoints.getSingleMovie(movieId)
-    fun getSeriesByPage(seriesId: String) = remoteEndPoints.getSingleSeries(seriesId)
+    fun getMoviesDetailsById(movieId: String) = remoteEndPoints.getSingleMovie(movieId)
+    fun getSeriesDetailsById(seriesId: String) = remoteEndPoints.getSingleSeries(seriesId)
 }

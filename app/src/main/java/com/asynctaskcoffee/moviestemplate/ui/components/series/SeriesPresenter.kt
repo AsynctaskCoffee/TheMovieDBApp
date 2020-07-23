@@ -18,7 +18,7 @@ class SeriesPresenter @Inject constructor(private val dataRepository: DataReposi
         fetchSeriesData(1)
     }
 
-    private fun fetchSeriesData(pageIndex: Int) {
+    fun fetchSeriesData(pageIndex: Int) {
         disposables?.addAll(
             dataRepository.getSeriesByPage(pageIndex)
                 .observeOn(AndroidSchedulers.mainThread())

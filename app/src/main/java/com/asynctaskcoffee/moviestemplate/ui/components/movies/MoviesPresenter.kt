@@ -19,7 +19,7 @@ class MoviesPresenter @Inject constructor(private val dataRepository: DataReposi
         fetchMoviesData(1)
     }
 
-    private fun fetchMoviesData(pageIndex: Int) {
+    fun fetchMoviesData(pageIndex: Int) {
         disposables?.addAll(
             dataRepository.getMoviesByPage(pageIndex)
                 .observeOn(AndroidSchedulers.mainThread())

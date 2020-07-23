@@ -27,7 +27,7 @@ data class MoviesSingleResponse(
     val revenue: Int? = null,
 
     @field:SerializedName("genres")
-    val genres: List<GenresItemMovies?>? = null,
+    val genres: List<GenresItem?>? = null,
 
     @field:SerializedName("popularity")
     val popularity: Double? = null,
@@ -111,15 +111,6 @@ data class SpokenLanguagesItem(
     val iso6391: String? = null
 ) : Parcelable
 
-@Parcelize
-data class GenresItemMovies(
-
-    @field:SerializedName("name")
-    val name: String? = null,
-
-    @field:SerializedName("id")
-    val id: Int? = null
-) : Parcelable
 
 @Parcelize
 data class ProductionCountriesItem(
