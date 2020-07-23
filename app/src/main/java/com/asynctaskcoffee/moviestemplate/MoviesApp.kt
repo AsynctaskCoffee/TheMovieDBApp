@@ -7,7 +7,6 @@ import com.asynctaskcoffee.moviestemplate.di.components.DaggerMoviesAppComponent
 import com.asynctaskcoffee.moviestemplate.di.components.MoviesAppComponent
 import com.asynctaskcoffee.moviestemplate.di.modules.MoviesAppModule
 import com.asynctaskcoffee.moviestemplate.di.modules.RemoteModule
-import dagger.internal.DoubleCheck.lazy
 
 class MoviesApp : Application(), LifecycleObserver {
 
@@ -16,12 +15,11 @@ class MoviesApp : Application(), LifecycleObserver {
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
     }
 
-    val applicationComponent: MoviesAppComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
+    val applicationComponent: MoviesAppComponent =
         DaggerMoviesAppComponent
             .builder()
             .moviesAppModule(MoviesAppModule(this))
             .remoteModule(RemoteModule(this))
             .build()
-    }
 
 }

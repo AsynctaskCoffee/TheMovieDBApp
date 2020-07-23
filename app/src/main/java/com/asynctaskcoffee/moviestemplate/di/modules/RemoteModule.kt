@@ -36,30 +36,18 @@ class RemoteModule(private val application: Application) {
 
     @ApplicationScope
     @Provides
-    fun provideBearerInterceptor() = BearerTokenInterceptor()
+    fun provideBearerTokenInterceptor() = BearerTokenInterceptor()
 
-
-    @ApplicationScope
-    @Provides
-    @Named("CommonOkHttpClient")
-    fun provideOkHttpClient(cache: Cache,bearerTokenInterceptor: BearerTokenInterceptor) =
-        with(OkHttpClient.Builder()) {
-            cache(cache)
-            if (BuildConfig.IS_DEVELOPMENT) {
-                val logging = HttpLoggingInterceptor()
-                logging.level = HttpLoggingInterceptor.Level.BASIC
-                addInterceptor(logging)
-            }
-            addInterceptor(bearerTokenInterceptor)
-            build()
-        }
 
     @ApplicationScope
     @Provides
     @Named("RemoteOkHttpClient")
-    fun provideRemoteOkHttpClient(cache: Cache,bearerTokenInterceptor: BearerTokenInterceptor) =
+    fun provideRemoteOkHttpClient(cache: Cache, bearerTokenInterceptor: BearerTokenInterceptor) =
         with(OkHttpClient.Builder()) {
             cache(cache)
+            val logging = HttpLoggingInterceptor()
+            logging.level = HttpLoggingInterceptor.Level.BODY
+            addInterceptor(logging)
             addInterceptor(bearerTokenInterceptor)
             build()
         }

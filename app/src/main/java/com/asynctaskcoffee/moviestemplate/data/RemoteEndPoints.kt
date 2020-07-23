@@ -2,6 +2,7 @@ package com.asynctaskcoffee.moviestemplate.data
 
 import com.asynctaskcoffee.moviestemplate.data.remotemodels.MoviesListResponse
 import com.asynctaskcoffee.moviestemplate.data.remotemodels.MoviesSingleResponse
+import com.asynctaskcoffee.moviestemplate.data.remotemodels.TvSeriesListResponse
 import com.asynctaskcoffee.moviestemplate.data.remotemodels.TvSeriesSingleResponse
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -17,7 +18,7 @@ interface RemoteEndPoints {
     @GET("3/discover/tv")
     fun getSeries(
         @Query("page") page: Int
-    ): Single<MoviesListResponse>
+    ): Single<TvSeriesListResponse>
 
     @GET("3/tv/{tv_id}")
     fun getSingleSeries(

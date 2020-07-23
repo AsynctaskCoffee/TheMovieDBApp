@@ -2,6 +2,8 @@ package com.asynctaskcoffee.moviestemplate.ui.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProviders
 import butterknife.ButterKnife
 import com.asynctaskcoffee.moviestemplate.MoviesApp

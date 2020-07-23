@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_movies"
+        android:icon="@drawable/ic_tab_movies"
+        android:title="@string/title_movies"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/navigation_series"
+        android:icon="@drawable/ic_tab_series"
+        android:title="@string/title_series"
+        app:showAsAction="always" />
+
+</menu>

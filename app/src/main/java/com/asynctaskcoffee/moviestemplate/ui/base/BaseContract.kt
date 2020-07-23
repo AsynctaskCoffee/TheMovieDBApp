@@ -4,7 +4,8 @@ interface BaseContract {
 
     interface View {
         fun handleLongPress(): Boolean?
-     }
+        fun showToast(msg: String)
+    }
 
     interface Presenter<V : View> {
 
