@@ -12,7 +12,7 @@ import com.asynctaskcoffee.moviestemplate.data.localmodels.CommonResultItem
 import com.asynctaskcoffee.moviestemplate.data.localmodels.REQUEST
 import com.asynctaskcoffee.moviestemplate.ui.base.BaseActivity
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_details.*
+import kotlinx.android.synthetic.main.activity_details_demo_design.*
 import java.io.Serializable
 import javax.inject.Inject
 
@@ -31,10 +31,10 @@ class DetailsActivity : BaseActivity<DetailsContract.View, DetailsContract.Prese
     override fun initUI() {
         val commonResultItem = intent.getSerializableExtra("common") as? CommonResultItem
 
-        Glide.with(this).load("https://image.tmdb.org/t/p/w300" + commonResultItem?.posterPath)
+        Glide.with(this).load("https://image.tmdb.org/t/p/w500" + commonResultItem?.posterPath)
             .into(detailsImage)
 
-        Glide.with(this).load("https://image.tmdb.org/t/p/w300" + commonResultItem?.backdropPath)
+        Glide.with(this).load("https://image.tmdb.org/t/p/w500" + commonResultItem?.backdropPath)
             .into(detailsCoverImage)
 
         detailsTitle.text = commonResultItem?.name

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:motion="http://schemas.android.com/tools">
+
+    <Transition
+        app:constraintSetEnd="@layout/activity_details_end"
+        app:constraintSetStart="@layout/activity_details"
+        app:duration="500"
+        motion:motionInterpolator="linear">
+
+        <OnSwipe
+            app:dragDirection="dragUp"
+            app:touchAnchorId="@id/detailsImage"
+            app:touchAnchorSide="top" />
+
+        <KeyFrameSet>
+
+            <KeyAttribute
+                android:alpha="50"
+                motion:framePosition="45"
+                motion:motionTarget="@id/detailsNestedScrollView" />
+
+        </KeyFrameSet>
+
+    </Transition>
+</MotionScene>
