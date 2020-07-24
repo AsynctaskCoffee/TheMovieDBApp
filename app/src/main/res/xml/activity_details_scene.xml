@@ -14,14 +14,7 @@
             app:touchAnchorId="@id/detailsImage"
             app:touchAnchorSide="top" />
 
-        <KeyFrameSet>
 
-            <KeyAttribute
-                android:alpha="50"
-                motion:framePosition="45"
-                motion:motionTarget="@id/detailsNestedScrollView" />
-
-        </KeyFrameSet>
 
     </Transition>
 </MotionScene>

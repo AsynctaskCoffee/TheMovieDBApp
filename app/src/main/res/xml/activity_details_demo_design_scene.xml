@@ -11,17 +11,8 @@
 
         <OnSwipe
             app:dragDirection="dragUp"
-            app:touchAnchorId="@id/detailsNestedScrollView"
+            app:touchAnchorId="@id/detailsScrollView"
             app:touchAnchorSide="top" />
 
     </Transition>
-
-    <KeyFrameSet>
-
-        <KeyAttribute
-            android:alpha="0"
-            motion:framePosition="45"
-            motion:motionTarget="@id/detailsImage" />
-
-    </KeyFrameSet>
 </MotionScene>

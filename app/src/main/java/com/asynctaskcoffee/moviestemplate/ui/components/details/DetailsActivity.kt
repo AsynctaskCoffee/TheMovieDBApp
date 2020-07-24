@@ -26,7 +26,7 @@ class DetailsActivity : BaseActivity<DetailsContract.View, DetailsContract.Prese
 
     override fun injectDependencies() = getApplicationComponent().inject(this)
 
-    override fun getLayoutResId(): Int = R.layout.activity_details
+    override fun getLayoutResId(): Int = R.layout.activity_details_demo_design
 
     override fun initUI() {
         val commonResultItem = intent.getSerializableExtra("common") as? CommonResultItem
