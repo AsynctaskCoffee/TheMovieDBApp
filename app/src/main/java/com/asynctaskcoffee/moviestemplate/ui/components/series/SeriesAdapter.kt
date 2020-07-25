@@ -41,17 +41,12 @@ class SeriesAdapter(
                     itemView.cardStarHolder,
                     itemView.context.resources.getString(R.string.transitionCard)
                 )
-                val pairHolder = Pair<View, String>(
-                    itemView.seriesCard,
-                    itemView.context.resources.getString(R.string.transitionCardContainer)
-                )
 
                 val activityOptions = ActivityOptions.makeSceneTransitionAnimation(
                     seriesFragment.activity,
                     pairImageHolder,
                     pairTitle,
-                    pairStar,
-                    pairHolder
+                    pairStar
                 )
 
                 DetailsActivity.startMe(

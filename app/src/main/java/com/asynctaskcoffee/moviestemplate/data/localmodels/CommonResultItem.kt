@@ -21,7 +21,7 @@ data class CommonResultItem(
 data class AdditionalResultItem(
     val duration: String? = null,
     val information: String? = null,
-    val genreIds: List<GenresItem?>? = null
+    val genres: List<GenresItem?>? = null
 ) : Parcelable, Serializable
 
 enum class REQUEST { SERIES, MOVIES }

@@ -10,6 +10,7 @@ import com.asynctaskcoffee.moviestemplate.R
 import com.asynctaskcoffee.moviestemplate.data.localmodels.AdditionalResultItem
 import com.asynctaskcoffee.moviestemplate.data.localmodels.CommonResultItem
 import com.asynctaskcoffee.moviestemplate.data.localmodels.REQUEST
+import com.asynctaskcoffee.moviestemplate.data.remotemodels.GenresItem
 import com.asynctaskcoffee.moviestemplate.ui.base.BaseActivity
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_details_demo_design.*
@@ -37,6 +38,8 @@ class DetailsActivity : BaseActivity<DetailsContract.View, DetailsContract.Prese
         Glide.with(this).load("https://image.tmdb.org/t/p/w500" + commonResultItem?.backdropPath)
             .into(detailsCoverImage)
 
+        detailsSubTitle.text = ""
+
         detailsTitle.text = commonResultItem?.name
         detailsRating.text = commonResultItem?.rating
         detailsDate.text = commonResultItem?.dateString
@@ -60,6 +63,9 @@ class DetailsActivity : BaseActivity<DetailsContract.View, DetailsContract.Prese
     override fun onAdditionalInformationReady(additionalResultItem: AdditionalResultItem) {
         detailsInformation.text = additionalResultItem.information
         detailsDuration.text = additionalResultItem.duration + " min"
+        for (item in additionalResultItem.genres!!) {
+            detailsSubTitle.append(item?.name + " ")
+        }
     }
 
     override fun showToast(msg: String) {
@@ -72,7 +78,7 @@ class DetailsActivity : BaseActivity<DetailsContract.View, DetailsContract.Prese
             intent.putExtra("common", commonResultItem as Serializable)
             Handler().postDelayed({
                 activity.startActivity(intent, bundle)
-            }, 300)
+            }, 100)
         }
     }
 }

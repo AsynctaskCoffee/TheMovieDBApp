@@ -1,7 +1,7 @@
 package com.asynctaskcoffee.moviestemplate.ui.components.movies
 
 import android.app.ActivityOptions
-import android.content.Intent
+import android.os.Handler
 import android.util.Pair
 import android.view.LayoutInflater
 import android.view.View
@@ -34,25 +34,22 @@ class MoviesAdapter(
                     itemView.cardStarHolder,
                     itemView.context.resources.getString(R.string.transitionCard)
                 )
-                val pairHolder = Pair<View, String>(
-                    itemView.moviesCard,
-                    itemView.context.resources.getString(R.string.transitionCardContainer)
-                )
 
                 val activityOptions = ActivityOptions.makeSceneTransitionAnimation(
                     moviesFragment.activity,
                     pairImage,
                     pairTitle,
-                    pairStar,
-                    pairHolder
+                    pairStar
                 )
 
-                DetailsActivity.startMe(
-                    moviesFragment.requireActivity(),
-                    activityOptions.toBundle(),
-                    ConvertCommonResult().convert(item)
-                )
-
+                itemView.moviesMotionLayout.transitionToEnd()
+                Handler().postDelayed({
+                    DetailsActivity.startMe(
+                        moviesFragment.requireActivity(),
+                        activityOptions.toBundle(),
+                        ConvertCommonResult().convert(item)
+                    )
+                }, 100)
             }
         }
 
@@ -80,6 +77,14 @@ class MoviesAdapter(
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
         holder.bindTransitionIntent(moviesFragment, moviesList?.get(position)!!)
-        holder.bindItems(moviesList?.get(position)!!)
+        holder.bindItems(moviesList[position]!!)
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 }
