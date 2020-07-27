@@ -8,6 +8,7 @@ import android.view.View
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import kotlin.math.abs
 
 class VerticalViewPager : ViewPager {
 
@@ -77,7 +78,7 @@ class VerticalViewPager : ViewPager {
                     page.translationX = page.width * -position
                     page.translationY = page.height * position
                     val scaleFactor =
-                        Companion.Min_Scale + (1 - Companion.Min_Scale) * (1 - Math.abs(
+                        Companion.Min_Scale + (1 - Companion.Min_Scale) * (1 - abs(
                             position
                         ))
                     page.scaleX = scaleFactor
@@ -92,6 +93,6 @@ class VerticalViewPager : ViewPager {
     }
 
     companion object {
-        private const val Min_Scale = 0.65f
+        private const val Min_Scale = 0.50f
     }
 }

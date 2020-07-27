@@ -97,7 +97,7 @@ class ShowRoomFragment : BaseFragment<ShowRoomContract.View, ShowRoomContract.Pr
     }
 
     private fun transitionStart() {
-        showRoomMotionLayout.setTransitionDuration(500)
+        showRoomMotionLayout.setTransitionDuration(300)
         if (showRoomMotionLayout.currentState == R.id.startShowRoom) {
             lockViewPager()
             showRoomMotionLayout.setTransition(R.id.startShowRoom, R.id.midShowRoom)
@@ -107,8 +107,8 @@ class ShowRoomFragment : BaseFragment<ShowRoomContract.View, ShowRoomContract.Pr
                 showRoomMotionLayout.transitionToEnd()
                 Handler().postDelayed({
                     showRoomPresenter.getMoviesDetails(commonResultItem.id.toString())
-                }, 550)
-            }, 550)
+                }, 350)
+            }, 350)
         }
     }
 
@@ -118,8 +118,8 @@ class ShowRoomFragment : BaseFragment<ShowRoomContract.View, ShowRoomContract.Pr
             R.layout.activity_details_demo_design
         )
         showRoomInnerMotionLayout.transitionToEnd()
-        showRoomMotionLayout.setTransitionDuration(500)
-        Handler().postDelayed({ reverseParentMotion() }, 550)
+        showRoomMotionLayout.setTransitionDuration(300)
+        Handler().postDelayed({ reverseParentMotion() }, 350)
     }
 
     private fun reverseParentMotion() {
@@ -136,8 +136,8 @@ class ShowRoomFragment : BaseFragment<ShowRoomContract.View, ShowRoomContract.Pr
                         R.layout.activity_details_demo_design,
                         R.layout.activity_details_demo_design
                     )
-                }, 550)
-            }, 550)
+                }, 350)
+            }, 350)
         }
     }
 
