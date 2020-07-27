@@ -74,7 +74,7 @@
 
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cardStarHolder"
+                        android:id="@+id/cardStarHolderSeries"
                         android:layout_width="80dp"
                         android:layout_height="30dp"
                         android:layout_marginTop="5dp"

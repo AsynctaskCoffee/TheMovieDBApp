@@ -5,7 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
-class EndlessRecyclerViewScrollListener : RecyclerView.OnScrollListener {
+class EndlessRecyclerViewScrollListener(
+    layoutManager: GridLayoutManager,
+    onNextPageListener: OnNextPageListener
+) : RecyclerView.OnScrollListener() {
 
     private var visibleThreshold = 5
     private var currentPage = 1
@@ -13,26 +16,10 @@ class EndlessRecyclerViewScrollListener : RecyclerView.OnScrollListener {
     private var loading = true
     private var startingPageIndex = 1
     private var itemPerRequest = 20
-    private var onNextPageListener: OnNextPageListener? = null
+    private var onNextPageListener: OnNextPageListener? = onNextPageListener
 
-    private lateinit var mLayoutManager: RecyclerView.LayoutManager
+    private var mLayoutManager: GridLayoutManager = layoutManager
 
-    constructor(layoutManager: LinearLayoutManager, onNextPageListener: OnNextPageListener) {
-        this.onNextPageListener = onNextPageListener
-        this.mLayoutManager = layoutManager
-    }
-
-    constructor(layoutManager: GridLayoutManager, onNextPageListener: OnNextPageListener) {
-        this.mLayoutManager = layoutManager
-        this.onNextPageListener = onNextPageListener
-        visibleThreshold *= layoutManager.spanCount
-    }
-
-    constructor(layoutManager: StaggeredGridLayoutManager, onNextPageListener: OnNextPageListener) {
-        this.mLayoutManager = layoutManager
-        this.onNextPageListener = onNextPageListener
-        visibleThreshold *= layoutManager.spanCount
-    }
 
     private fun getLastVisibleItem(
         lastVisibleItemPositions: IntArray
@@ -51,25 +38,7 @@ class EndlessRecyclerViewScrollListener : RecyclerView.OnScrollListener {
     override fun onScrolled(view: RecyclerView, dx: Int, dy: Int) {
         var lastVisibleItemPosition = 0
         val totalItemCount = mLayoutManager.itemCount
-
-        when (mLayoutManager) {
-            is StaggeredGridLayoutManager -> {
-                val lastVisibleItemPositions =
-                    (mLayoutManager as StaggeredGridLayoutManager).findLastVisibleItemPositions(
-                        null
-                    )
-                lastVisibleItemPosition = getLastVisibleItem(lastVisibleItemPositions)
-            }
-            is GridLayoutManager -> {
-                lastVisibleItemPosition =
-                    (mLayoutManager as GridLayoutManager).findLastVisibleItemPosition()
-            }
-            is LinearLayoutManager -> {
-                lastVisibleItemPosition =
-                    (mLayoutManager as LinearLayoutManager).findLastVisibleItemPosition()
-            }
-        }
-
+        lastVisibleItemPosition = mLayoutManager.findLastVisibleItemPosition()
         if (totalItemCount < previousTotalItemCount) {
             this.currentPage = this.startingPageIndex
             this.previousTotalItemCount = totalItemCount
@@ -82,7 +51,7 @@ class EndlessRecyclerViewScrollListener : RecyclerView.OnScrollListener {
             previousTotalItemCount = totalItemCount
         }
 
-        if (!loading && (lastVisibleItemPosition + visibleThreshold) > totalItemCount && (itemPerRequest * currentPage == totalItemCount)) {
+        if (!loading && (lastVisibleItemPosition + visibleThreshold * mLayoutManager.spanCount) > totalItemCount && (itemPerRequest * currentPage == totalItemCount)) {
             currentPage++
             if (onNextPageListener != null)
                 onNextPageListener!!.nextPageRequest(currentPage, totalItemCount, view)
