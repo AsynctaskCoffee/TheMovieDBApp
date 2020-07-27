@@ -2,6 +2,7 @@ package com.asynctaskcoffee.moviestemplate.ui.components.movies
 
 import com.asynctaskcoffee.moviestemplate.data.DataRepository
 import com.asynctaskcoffee.moviestemplate.data.remotemodels.MoviesListResponse
+import com.asynctaskcoffee.moviestemplate.data.remotemodels.ResultsItemMovies
 import com.asynctaskcoffee.moviestemplate.data.remotemodels.ResultsItemSeries
 import com.asynctaskcoffee.moviestemplate.data.remotemodels.TvSeriesListResponse
 import com.asynctaskcoffee.moviestemplate.ui.base.BasePresenter
@@ -42,7 +43,7 @@ class MoviesPresenter @Inject constructor(private val dataRepository: DataReposi
         )
     }
 
-    override fun onItemClicked(item: ResultsItemSeries) {
+    override fun onItemClicked(item: ResultsItemMovies) {
 
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layoutDescription="@xml/activity_details_demo_design_end_scene">
+    tools:ignore="MotionLayoutInvalidSceneFileReference">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

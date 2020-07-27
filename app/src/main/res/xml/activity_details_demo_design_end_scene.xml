@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ConstraintSet android:id="@+id/start">
-        <Constraint android:id="@+id/detailsImageConstraintLayout" />
+        <Constraint android:id="@+id/detailsScrollView" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
-        <Constraint android:id="@id/detailsImageConstraintLayout" />
+        <Constraint android:id="@id/detailsScrollView" />
     </ConstraintSet>
 
     <Transition

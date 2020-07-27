@@ -3,19 +3,17 @@ package com.asynctaskcoffee.moviestemplate.ui.components.main
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.viewpager.widget.ViewPager
 import com.asynctaskcoffee.moviestemplate.R
 import com.asynctaskcoffee.moviestemplate.ui.base.BaseActivity
-import com.asynctaskcoffee.moviestemplate.ui.components.movies.MoviesFragment
-import com.asynctaskcoffee.moviestemplate.ui.components.series.SeriesFragment
+import com.asynctaskcoffee.moviestemplate.ui.base.BaseFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
+
 class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), MainContract.View,
-    BottomNavigationView.OnNavigationItemSelectedListener,ViewPager.OnPageChangeListener {
+    BottomNavigationView.OnNavigationItemSelectedListener, ViewPager.OnPageChangeListener {
 
     @Inject
     lateinit var mainPresenter: MainPresenter
@@ -76,4 +74,16 @@ class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), 
     override fun onPageSelected(position: Int) {
         bottomNavigationView.menu.getItem(position).isChecked = true
     }
+
+    override fun onBackPressed() {
+        val fragments =
+            supportFragmentManager.fragments
+        for (fragment in fragments) {
+            if (!fragment.isVisible) continue
+            if (fragment is BaseFragment<*, *> && fragment.onBackPressed()) {
+                return
+            }
+        }
+    }
+
 }
