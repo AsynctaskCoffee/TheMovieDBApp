@@ -74,7 +74,6 @@ class VerticalViewPager : ViewPager {
                     page.scaleY = 1F
                 }
                 position <= 1 -> {
-                    page.alpha = 1 - position
                     page.translationX = page.width * -position
                     page.translationY = page.height * position
                     val scaleFactor =
