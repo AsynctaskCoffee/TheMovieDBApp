@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import butterknife.ButterKnife
 import com.asynctaskcoffee.moviestemplate.MoviesApp
@@ -16,15 +17,11 @@ abstract class BaseActivity<V : BaseContract.View, P : BaseContract.Presenter<V>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         hasSavedInstance = savedInstanceState != null
         setContentView(getLayoutResId())
-
         ButterKnife.bind(this)
         injectDependencies()
-
-        val viewModel: BaseViewModel<V, P> =
-            ViewModelProviders.of(this).get(BaseViewModel<V, P>()::class.java)
+        val viewModel: BaseViewModel<V, P> = ViewModelProvider(this).get(BaseViewModel<V, P>()::class.java)
         val isCreated = viewModel.presenter == null
         viewModel.presenter = viewModel.presenter ?: initPresenter()
         presenter = viewModel.presenter

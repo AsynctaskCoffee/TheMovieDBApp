@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import butterknife.ButterKnife
 import com.asynctaskcoffee.moviestemplate.MoviesApp
@@ -20,9 +21,9 @@ abstract class BaseFragment<V : BaseContract.View, P : BaseContract.Presenter<V>
         hasSavedInstance = savedInstanceState != null
         injectDependencies()
         val viewModel: BaseViewModel<V, P> =
-            ViewModelProviders.of(this).get(BaseViewModel<V, P>()::class.java)
+            ViewModelProvider(this).get(BaseViewModel<V, P>()::class.java)
         val isCreated = viewModel.presenter == null
-        viewModel.presenter = viewModel.presenter ?: initPresenter()
+        viewModel.presenter = initPresenter()
         presenter = viewModel.presenter
         presenter?.attachView(this as V)
         presenter?.onSavedInstance(hasSavedInstance)
