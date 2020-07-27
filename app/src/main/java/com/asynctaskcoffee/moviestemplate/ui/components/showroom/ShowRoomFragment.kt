@@ -51,6 +51,9 @@ class ShowRoomFragment : BaseFragment<ShowRoomContract.View, ShowRoomContract.Pr
             detailsRating.text = commonResultItem.rating
             detailsDate.text = commonResultItem.dateString
 
+            innerRating.text = commonResultItem.rating
+            innerTitle.text = commonResultItem.name
+
             cardShowRoomBack.setOnClickListener {
                 transitionStart()
             }

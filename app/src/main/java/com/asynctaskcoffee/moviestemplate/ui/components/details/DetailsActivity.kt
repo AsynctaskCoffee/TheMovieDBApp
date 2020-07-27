@@ -19,6 +19,7 @@ import javax.inject.Inject
 
 class DetailsActivity : BaseActivity<DetailsContract.View, DetailsContract.Presenter>(),
     DetailsContract.View {
+    private var commonResultItem: CommonResultItem? = null
 
     @Inject
     lateinit var detailsPresenter: DetailsPresenter
@@ -30,13 +31,10 @@ class DetailsActivity : BaseActivity<DetailsContract.View, DetailsContract.Prese
     override fun getLayoutResId(): Int = R.layout.activity_details_demo_design
 
     override fun initUI() {
-        val commonResultItem = intent.getSerializableExtra("common") as? CommonResultItem
+        commonResultItem = intent.getSerializableExtra("common") as? CommonResultItem
 
         Glide.with(this).load("https://image.tmdb.org/t/p/w500" + commonResultItem?.posterPath)
             .into(detailsImage)
-
-        Glide.with(this).load("https://image.tmdb.org/t/p/w500" + commonResultItem?.backdropPath)
-            .into(detailsCoverImage)
 
         detailsSubTitle.text = ""
 
@@ -45,10 +43,10 @@ class DetailsActivity : BaseActivity<DetailsContract.View, DetailsContract.Prese
         detailsDate.text = commonResultItem?.dateString
 
         if (commonResultItem?.type == REQUEST.MOVIES)
-            detailsPresenter.getMoviesDetails(commonResultItem.id.toString())
+            detailsPresenter.getMoviesDetails(commonResultItem?.id.toString())
 
         if (commonResultItem?.type == REQUEST.SERIES)
-            detailsPresenter.getSeriesDetails(commonResultItem.id.toString())
+            detailsPresenter.getSeriesDetails(commonResultItem?.id.toString())
     }
 
     override fun activateShimmers() {
@@ -66,6 +64,8 @@ class DetailsActivity : BaseActivity<DetailsContract.View, DetailsContract.Prese
         for (item in additionalResultItem.genres!!) {
             detailsSubTitle.append(item?.name + " ")
         }
+        Glide.with(this).load("https://image.tmdb.org/t/p/w500" + commonResultItem?.backdropPath)
+            .into(detailsCoverImage)
     }
 
     override fun showToast(msg: String) {

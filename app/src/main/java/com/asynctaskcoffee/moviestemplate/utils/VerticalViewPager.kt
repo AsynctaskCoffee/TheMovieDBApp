@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import androidx.annotation.NonNull
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 
 class VerticalViewPager : ViewPager {
