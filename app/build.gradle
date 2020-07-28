@@ -68,9 +68,9 @@ android {
 
         debug {
             keyAlias 'key0'
-            keyPassword 'asdqwe123'
+            keyPassword '123456'
             storeFile file('movies_debug.jks')
-            storePassword 'asdqwe123'
+            storePassword '123456'
         }
     }
 
