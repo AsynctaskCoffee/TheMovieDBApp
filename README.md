@@ -18,9 +18,6 @@ MVP-Kotlin application, that allows the user to fetch movie and series informati
 - [x] Window activity transitions
 - [x] Signing Configs
 - [x] Application Variants
-- [ ] RxBus
-- [ ] Room
-- [ ] Unit tests
 
 ## MVP Kotlin
 
